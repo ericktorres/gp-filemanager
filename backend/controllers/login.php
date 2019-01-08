@@ -39,8 +39,11 @@ $app->post('/login/auth', function(Request $request) use ($app){
 		// Setting the session data for all the app
 		$app['session']->set('session_data', array('logged_username' => $username, 'logged_user_id' => $user_data['id'], 'logged_user_privileges' => $user_data['privileges'], 'logged_user_name' => $user_data['name']));
 
-		return $app->redirect("http://localhost/gp-filemanager/backend/console");
+		return $app->redirect("/console");
+		//return "Logged";
 	}else{
-		return "Los datos de acceso son incorrectos";
+		return $app->redirect("/login");
+		//return "Login failed";
+		//return "Los datos de acceso son incorrectos";
 	}
 });

@@ -29,13 +29,13 @@
         <div class="collapse navbar-collapse" id="navbarsExample01">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/gp-filemanager/backend/console">Home</a>
+                    <a class="nav-link" href="/console">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/gp-filemanager/backend/users">Usuarios</a>
+                    <a class="nav-link" href="/users">Usuarios</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/gp-filemanager/backend/filemanager">Archivos <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/filemanager">Archivos <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{session_data.logged_user_name}}</a>
@@ -78,7 +78,8 @@
                     <td>{{file.path}}</td>
                     <td>{{file.creation_date}}</td>
                     <td>
-                        <button type="button" class="btn btn-outline-secondary btn-sm"><span class="oi oi-data-transfer-download"></span></button>
+                        <a class="btn btn-outline-secondary btn-sm" target="_blank" href="/files/{{file.path}}"><span class="oi oi-data-transfer-download"></span></a>
+                        <!--<button type="button" class="btn btn-outline-secondary btn-sm"><span class="oi oi-data-transfer-download"></span></button>-->
                     </td>
                 </tr>
                 {% endfor %}
@@ -95,7 +96,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form id="frm_user" method="post" action="/gp-filemanager/backend/filemanager/create-modify-file" enctype="multipart/form-data">
+                    <form id="frm_user" method="post" action="filemanager/create-modify-file" enctype="multipart/form-data">
                     <div class="modal-body">
                         
                             <div class="form-group">
@@ -132,6 +133,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="js/users.js" type="text/javascript"></script>
 </body>
 </html>

@@ -1,6 +1,8 @@
 <?php
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 // Rendering the template
 $app->get('/filemanager', function() use ($app){
@@ -43,7 +45,7 @@ $app->post('/filemanager/create-modify-file', function(Request $request) use ($a
 	$file_name = $file->getClientOriginalName();
 
 	if($file !== null){
-        $path = '../backend/files/';
+        $path = 'files/';
         $copy = $file->move($path, $file->getClientOriginalName());
 
         $response_file = array(
@@ -89,7 +91,7 @@ $app->post('/filemanager/create-modify-file', function(Request $request) use ($a
 	}
 
 	//return $app->json($response);
-	return $app->redirect("http://localhost/gp-filemanager/backend/filemanager");
+	return $app->redirect("/filemanager");
 });
 
 
@@ -123,4 +125,17 @@ $app->get('/filemanager/delete-file/{file_id}', function($file_id) use ($app){
 	}
 
 	return $app->json($response);
+});
+
+
+$app->get('/files/{filename}', function($filename) use ($app){
+	$path = "files/".$filename;
+
+	/*return $app
+    	->sendFile($path)
+    	->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+			$path
+		);*/
+
+	return new BinaryFileResponse($path);
 });

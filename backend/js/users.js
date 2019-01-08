@@ -9,7 +9,7 @@ var openEditCreateUser = function(user_id, action){
 	
 	if(user_id != ''){
 		$.ajax({
-		url: 'http://localhost/gp-filemanager/backend/api/v1/get-user/'+user_id,
+		url: 'http://documents.gp-soluciones.com.mx/api/v1/get-user/'+user_id,
 		dataType: 'json',
 		success: function(response){
 			$('#txt_user_id').val(response.id);
@@ -38,7 +38,7 @@ var editCreateUser = function(){
 	var params = JSON.stringify({user_id: user_id, name: name, lastname: lastname, username: username, password: password, status: status, privileges: privileges});
 	
 	$.ajax({
-		url: 'http://localhost/gp-filemanager/backend/api/v1/create-modify-user',
+		url: 'http://documents.gp-soluciones.com.mx/api/v1/create-modify-user',
 		method: 'POST',
 		dataType: 'json',
 		data: params,
@@ -58,7 +58,7 @@ var deleteUser = function(user_id){
 
 	if(confirm_delete == true){
 		$.ajax({
-			url: 'http://localhost/gp-filemanager/backend/api/v1/delete-user/'+user_id,
+			url: 'http://documents.gp-soluciones.com.mx/api/v1/delete-user/'+user_id,
 			dataType: 'json',
 			success: function(response){
 				alert(response.message);
